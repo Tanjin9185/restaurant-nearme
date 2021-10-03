@@ -6,21 +6,30 @@ import { Dropdown, DropdownButton } from 'react-bootstrap';
 
 const LoadingRestaurantList = () => {
 
-    const [hotels, sethotels] = useState([]);
+    const [hotels, sethotels] = useState(data);
 
-    useEffect(() => {
-        sethotels(data)
-    }, [hotels])
 
-    const [value, setValue] = useState('');
     const handleSelect = (e) => {
-        console.log('select', e);
-        setValue(e)
+        let hotelsFilter = data?.filter(hotel => {
+            let cuisineStyle = hotel.CuisineStyle.substr(1, hotel.CuisineStyle.length - 2);
+            if (cuisineStyle.includes(e)) {
+                return hotel;
+            }
+        })
+
+        sethotels(hotelsFilter)
     }
-    const [valuep, setValuep] = useState('');
+
     const handleSelectp = (e) => {
-        console.log('seleffct', e);
-        setValuep(e)
+        let sortHotel;
+        if (e === "a") {
+            sortHotel = hotels.sort((a, b) => a.Rating - b.Rating);
+        }
+        else if (e === "d") {
+            sortHotel = hotels.sort((a, b) => b.Rating - a.Rating);
+        }
+
+        sethotels(sortHotel);
     }
     return (
         <div classname="container">
@@ -28,7 +37,7 @@ const LoadingRestaurantList = () => {
 
                 <DropdownButton
                     alignRight
-                    title={value ? value : 'select option'}
+                    title="Select"
                     id="dropdown-menu-align-right"
                     onSelect={handleSelect}
                 >
@@ -49,7 +58,7 @@ const LoadingRestaurantList = () => {
                     <h1>Sort By Rating</h1>
                     <DropdownButton
                         alignRight
-                        title={valuep ? valuep : 'Selecet'}
+                        title='Select'
                         id="dropdown-menu-align-right"
                         onSelect={handleSelectp}
                     >
@@ -58,7 +67,9 @@ const LoadingRestaurantList = () => {
                     </DropdownButton>
                 </div>
                 {
-                    hotels.map((hotel, index) => <Restaurants hotel={hotel} value={value} sortValue={valuep} index={index} ></Restaurants>)
+                    hotels.map((hotel, index) => (
+                        <Restaurants hotel={hotel} key={index} />
+                    ))
                 }
             </div>
         </div >
