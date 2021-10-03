@@ -33,7 +33,7 @@ const LoadingRestaurantList = () => {
         if (e === "ascending") {
             sortHotel = hotels.sort((a, b) => a.Rating - b.Rating);
         }
-        else if (e === "descending ") {
+        else if (e === "descending") {
             sortHotel = hotels.sort((a, b) => b.Rating - a.Rating);
         }
 
