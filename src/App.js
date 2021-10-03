@@ -4,8 +4,6 @@ function App() {
   return (
     <div className="App">
       <Home></Home>
-      {/* <Restaurants></Restaurants> */}
-      {/* <LoadingRestaurantList></LoadingRestaurantList> */}
     </div>
   );
 }

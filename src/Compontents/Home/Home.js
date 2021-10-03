@@ -4,12 +4,12 @@ import LoadingRestaurantList from '../LoadingRestaurantList/LoadingRestaurantLis
 // import Restaurants from '../Restaurants/Restaurants';
 const Home = () => {
     return (
-        <>
-            <div className="text-center">
-                <img src={banner} alt="" />
-                <LoadingRestaurantList></LoadingRestaurantList>
-            </div>
-        </>
+
+        <div className="text-center bg-dark">
+            <img src={banner} className="img-fluid" alt="" />
+            <LoadingRestaurantList></LoadingRestaurantList>
+        </div>
+
     );
 };
 
